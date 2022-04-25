@@ -1,9 +1,16 @@
+const { Message } = require('../models');
+
 const resolvers = {
+    // Query: {
+    //   helloWorld: () => {
+    //     return 'Hello world!';
+    //   }
+    // },
     Query: {
-      helloWorld: () => {
-        return 'Hello world!';
+      messages: async () => {
+        return Message.find().sort({ createdAt: -1 });
       }
-    }
+    } 
   };
   
   module.exports = resolvers;
