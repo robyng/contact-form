@@ -1,0 +1,327 @@
+nav {
+  overflow: hidden;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav a {
+  padding: 20px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+
+/* About Section */
+
+.profile {
+  display: flex;
+  background-color: aliceblue;
+  padding: 50px;
+}
+
+.div-resume {
+  background-color: aliceblue;
+  padding: 25px;
+}
+
+.about {
+  padding: 20px;
+}
+
+.about h3 {
+  padding-bottom: 10px;
+}
+.about img {
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  padding: 20px 0;
+}
+
+p {
+  display: inline-block;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.about-disc {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  align-content: center;
+}
+
+/* My Work Section */
+
+.work-box  {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.work-box a {
+  text-decoration: none;
+  color: black;
+}
+.work-box h3 {
+  padding: 20px;
+}
+
+.work-box img  {
+  width: 100%;
+  height:480px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.work-box img:hover {
+  opacity: .5;
+}
+
+.work-box a:hover {
+  color: rgb(87, 63, 175);
+}
+
+.project {
+  padding: 10px 10px 40px 10px;
+  background: white;
+  border: 1px solid black;
+  margin: 10px;
+}
+
+.sub-projects {
+  display: flex;
+}
+
+.sub-projects .project {
+  width: 50%;
+
+}
+
+.sub-projects img {
+  height: auto;
+
+}
+
+.title {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 32px;
+  margin: 10px 0;
+}
+
+.center {
+  text-align: center;
+}
+
+
+
+
+/* use z index so content does't scroll over header*/
+header {
+  background-color: aliceblue;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  z-index: 1; 
+}
+
+
+.hello {
+  padding: 20px;
+}
+
+.jelly {
+  min-height: 100vh;
+  background-image: url("../src/assets/images/jelly-fish-pexels-nidhi-shah-3616252.jpg");
+  background-size: cover;
+  min-width: 100%;
+  background-attachment: fixed;
+  padding: 20px;
+}
+
+.content-wrap {
+  padding-bottom: 2.5rem;  
+}
+
+footer {
+  width: 100%;
+  border-top: 1px solid darkgray;
+  padding: 10px;
+  text-align: center;
+  background-color: aliceblue;
+}
+
+.form-control {
+  padding: 10px 12px;
+  margin: 10px 0 30px 0;
+}
+
+.card {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  margin-top: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.logo {
+  margin: 10px;
+}
+
+header a {
+  text-decoration: none;
+  color: black;
+  /* text-align: center; */
+}
+
+header a:hover {
+  color: gray;
+}
+
+.icon {
+  margin: 0 5px 5px;
+}
+
+.form-div {
+  background-color: aliceblue;
+  padding: 25px;
+}
+
+section {
+  margin-top: 150px;
+}
+
+.box {
+  background-color: aliceblue;
+  width: 50%;
+  max-width: 500px;
+
+}
+
+.circle {
+  border-radius: 50%;
+  padding: 30px;
+ width: 100%;
+ height: 100%;
+  object-fit: cover;
+}
+
+/* styles for tablets */
+
+@media screen and (max-width: 992px) {
+  header {
+      display: block;
+  }
+  
+  header a {
+      display: block;
+      float: none;
+      text-align: center;
+      padding: 10px;
+  }
+
+  nav {
+      text-align: center;
+
+  }
+
+  .about {
+      width: 100%;
+  }
+
+  .about img {
+      height: auto;
+      display: flex;
+      justify-self: center;
+
+  }
+
+  .profile {
+      display: block;
+  }
+
+  .profile img {
+      height: auto;
+      margin: 0 auto 0 auto;
+      
+  }
+
+  .box {
+    width: 70%;
+  }
+
+}
+
+/* Styles for Mobile */
+
+@media screen and (max-width: 688px) {
+  header a {
+      padding: 5px;
+  }
+
+  .about {
+      width: 100%;
+      margin: 0 auto;
+  }
+
+  .work-box {
+      width: 90%;
+  }
+
+  .project {
+      width: 100%;
+      margin: 10px 0;
+  }
+
+  .sub-projects {
+      display: block;
+  }
+
+  .sub-projects .project {
+      width: 100%;
+  }
+
+  .contact {
+      width: 90%;
+  }
+
+  .profile {
+    padding: 20px;
+  }
+
+  .box {
+    width: 90%;
+  }
+}
+
+/*unique breakpoint fixes*/
+@media screen and (max-width: 424px){
+  section {
+    margin-top: 288px;
+  }
+
+  .about-disc {
+    padding: 5px 2px 20px;
+  }
+
+}
+
+@media screen and (max-width: 320px ) {
+  section {
+    margin-top: 288px;
+  }
+
+  .box {
+    width: 95%;
+  }
+}
