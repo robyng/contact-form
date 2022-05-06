@@ -12,7 +12,7 @@ export const QUERY_MESSAGES = gql`
   }
 `;
 
-export const QUERY_THOUGHT = gql`
+export const QUERY_MESSAGE = gql`
   query message($id: ID!) {
     message(_id: $id) {
         _id

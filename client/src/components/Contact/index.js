@@ -1,10 +1,38 @@
 import React, { useState } from "react";
 import { validateEmail } from '../../utils/helpers';
 
+import { useMutation } from '@apollo/client';
+import { ADD_MESSAGE } from '../../utils/mutations';
+import { QUERY_MESSAGE, QUERY_MESSAGES } from '../../utils/queries';
+
 function Contact() {
     const [errorMessage, setErrorMessage] = useState('');
-    const [formState, setFormState] = useState({ name: '', email: '', message: '' });
-    const { name, email, message } = formState;
+    const [formState, setFormState] = useState({ username: '', email: '', messageText: '' });
+    const { username, email, messageText } = formState;
+   
+    const [addMessage, { error }] = useMutation(ADD_MESSAGE, {
+        update(cache, { data: { addMessage } }) {
+          try {
+            // update thought array's cache
+            // could potentially not exist yet, so wrap in a try/catch
+            const { messages } = cache.readQuery({ query: QUERY_MESSAGES });
+            cache.writeQuery({
+              query: QUERY_MESSAGES,
+              data: { messages: [addMessage, ...messages] },
+            });
+          } catch (e) {
+            console.error(e);
+          }
+    
+          // update me object's cache
+          const { me } = cache.readQuery({ query: QUERY_MESSAGE });
+          cache.writeQuery({
+            query: QUERY_MESSAGE,
+            data: { me: { ...me, messages: [...me.messages, addMessage] } },
+          });
+        },
+      });
+
 
     function handleChange(e) {
         if (e.target.name === 'email') {
@@ -12,7 +40,7 @@ function Contact() {
             console.log(isValid)
             //isvalid conditional
             if (!isValid) {
-                setErrorMessage('Your email is invalid');
+                setErrorMessage('Your email is hella invalid');
             } else {
                 setErrorMessage('')
             }
@@ -34,13 +62,30 @@ function Contact() {
 
     }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        console.log(formState);
-    }
+  // submit form
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+        await addMessage({
+          variables: { username, email, messageText },
+        });
+  
+
+      } catch (e) {
+        console.error(e);
+      }
+
+        // clear form values
+        setFormState({
+            username: '',
+            email: '',
+            messageText: '',
+          });
+  };
 
     return (
-        <section class="container form-div col-lg-6 col-md-10">
+        <section className="container form-div col-lg-6 col-md-10">
         
             <h2>Contact me</h2>
             <a href='mailto:robyn@sitereworks.com'  target='_blank' rel='noreferrer'>robyn@sitereworks.com</a>
@@ -49,7 +94,7 @@ function Contact() {
             <form id="contact-form" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="username">Name:</label> <br />
-                    <input type="text" className="form-control" name="username" defaultValue={name} onBlur={handleChange} />
+                    <input type="text" className="form-control" name="username" defaultValue={username} onBlur={handleChange} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="email">Email address:</label><br />
@@ -57,7 +102,7 @@ function Contact() {
                 </div>
                 <div className="form-group">
                     <label htmlFor="message">Message:</label><br />
-                    <textarea name="message" className="form-control" defaultValue={message} onBlur={handleChange} rows="5" />
+                    <textarea name="message" className="form-control" defaultValue={messageText} onBlur={handleChange} rows="5" />
                 </div>
                 {errorMessage && (
                     <div>
