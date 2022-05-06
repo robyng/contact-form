@@ -14,7 +14,14 @@ messageText: String
 createdAt: String
   }
 
+  type Mutation {
+    addMessage(username: String!, email: String!, messageText: String!): Message
+  }
+
+
 `;
+
+
 
 
 
