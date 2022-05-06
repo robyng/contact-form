@@ -8,6 +8,15 @@ import Portfolio from './components/Portfolio'
 // import Practice from './components/Practice'
 import Contact from './components/Contact'
 import Resume from './components/Resume'
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider
+} from '@apollo/client';
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+});
 
 function App() {
 
@@ -33,6 +42,7 @@ function App() {
     }
   }
   return (
+    <ApolloProvider client={client}>
     <div>
 
 
@@ -55,6 +65,7 @@ function App() {
           <Footer></Footer>
 
     </div>
+    </ApolloProvider>
   );
 }
 

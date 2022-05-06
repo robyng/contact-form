@@ -2,17 +2,17 @@ const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 
-const message = new Schema(
+const messageSchema = new Schema(
   {
     username: {
       type: String,
-      required: true,
+      required: false,
       unique: false,
       trim: true
     },
     email: {
       type: String,
-      required: true,
+      required: false,
       unique: false,
       match: [/.+@.+\..+/, 'Must match an email address!']
     },
@@ -35,6 +35,6 @@ const message = new Schema(
   }
 );
 
-const Message = model('Message', message);
+const Message = model('Message', messageSchema);
 
 module.exports = Message;

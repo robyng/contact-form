@@ -14,9 +14,12 @@ const resolvers = {
     
     Mutation: {
       addMessage: async (parent, args) => {
-        const message = await Message.create(args);
+        
+        const message = await Message.create({...args});
   
         return message;
+
+        
       }
     }
    
