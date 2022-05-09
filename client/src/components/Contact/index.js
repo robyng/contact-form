@@ -10,7 +10,7 @@ function Contact() {
     const [characterCount, setCharacterCount] = useState(0);
 
 
-    const [addMessage, { error }] = useMutation(ADD_MESSAGE, {
+    const [addMessage, { data, loading, error }] = useMutation(ADD_MESSAGE, {
         update(cache, { data: { addMessage } }) {
           try {
             // update thought array's cache
@@ -45,6 +45,7 @@ function Contact() {
     };
 
     const handleSubmit = async event => {
+        
         // prevent page refresh
         event.preventDefault();
         // addMessage(messageText);
@@ -55,6 +56,7 @@ function Contact() {
 
         try {
           await addMessage();
+          
 
         } catch (e) {
           console.error(e);
@@ -78,6 +80,7 @@ function Contact() {
                     Submit
                 </button>
             </form>
+            
 
         </section>
     )
